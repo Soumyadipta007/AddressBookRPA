@@ -63,6 +63,14 @@
       <zoom version="2">1.25</zoom>
     </view>
   </subsheet>
+  <subsheet subsheetid="108247bf-bcfe-474c-95f7-140edb34eb00" type="Normal" published="False">
+    <name>Search by name</name>
+    <view>
+      <camerax>0</camerax>
+      <cameray>-68</cameray>
+      <zoom version="2">1.25</zoom>
+    </view>
+  </subsheet>
   <stage stageid="697f4f8c-06e6-4272-9cd0-6869e274e6d9" name="Start" type="Start">
     <loginhibit />
     <display x="15" y="-105" />
@@ -660,5 +668,77 @@ You will not be able to call this action from a business process, nor will it be
     <subsheetid>e479518d-72a8-4c2c-8786-cfff2f06109a</subsheetid>
     <display x="165" y="150" />
     <exception localized="yes" type="Business Exception" detail="&quot;Duplicate entry&quot;" />
+  </stage>
+  <stage stageid="d44c1e65-a87b-4743-a0ba-7813c4ac28b7" name="Search by name" type="SubSheetInfo">
+    <subsheetid>108247bf-bcfe-474c-95f7-140edb34eb00</subsheetid>
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="24739c2c-bc17-4b83-a06a-3c1bbc3fb265" name="Start" type="Start">
+    <subsheetid>108247bf-bcfe-474c-95f7-140edb34eb00</subsheetid>
+    <loginhibit />
+    <display x="15" y="-165" />
+    <onsuccess>7a11b23b-b2ac-4679-b5e9-133769bd49ec</onsuccess>
+  </stage>
+  <stage stageid="46af34f5-cb30-4328-aeb1-609d56056727" name="End" type="End">
+    <subsheetid>108247bf-bcfe-474c-95f7-140edb34eb00</subsheetid>
+    <loginhibit />
+    <display x="15" y="-15" />
+  </stage>
+  <stage stageid="7a11b23b-b2ac-4679-b5e9-133769bd49ec" name="Data - SQL Server::Set Connection" type="Action">
+    <subsheetid>108247bf-bcfe-474c-95f7-140edb34eb00</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="15" y="-120" />
+    <inputs>
+      <input type="text" name="Server" friendlyname="Server" narrative="The name of the server and, if necessary, instance name of the SQL Server instance to connect to" expr="&quot;(LocalDB)\BluePrismLocalDB&quot;" />
+      <input type="text" name="Database" friendlyname="Database" narrative="The name of the database to connect to" expr="&quot;AddressBookDB&quot;" />
+      <input type="text" name="User" friendlyname="User" narrative="If appropriate, the login name to use to connect to SQL Server. If left empty, windows authentication using the current user will be used instead of SQL Server authentication" expr="" />
+      <input type="password" name="Password" friendlyname="Password" narrative="If appropriate, the password to use with the above login name to access SQL Server. Unused for windows authentication" expr="" />
+    </inputs>
+    <onsuccess>50e81fdc-e1f5-4932-9ec0-82d5cae1fe65</onsuccess>
+    <resource object="Data - SQL Server" action="Set Connection" />
+  </stage>
+  <stage stageid="50e81fdc-e1f5-4932-9ec0-82d5cae1fe65" name="Data - SQL Server::Get Collection" type="Action">
+    <subsheetid>108247bf-bcfe-474c-95f7-140edb34eb00</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="15" y="-75" />
+    <inputs>
+      <input type="text" name="SQL" friendlyname="SQL" narrative="The SQL query to use to perform this action" expr="&quot;select * from [AddressBookDB].[dbo].[Address_Book] where firstName='Pranoy'&quot;" />
+    </inputs>
+    <outputs>
+      <output type="flag" name="Success" friendlyname="Success" narrative="Flag indicating success (True) or failure (False)" stage="" />
+      <output type="text" name="Message" friendlyname="Message" narrative="Error message giving detail regarding why this action failed" stage="" />
+      <output type="collection" name="Results" friendlyname="Results" narrative="The collection of results from the query" stage="GetResults" />
+    </outputs>
+    <onsuccess>46af34f5-cb30-4328-aeb1-609d56056727</onsuccess>
+    <resource object="Data - SQL Server" action="Get Collection" />
+  </stage>
+  <stage stageid="9abb687b-0ac4-4dad-ac21-396f1f0dfccb" name="GetResults" type="Collection">
+    <subsheetid>108247bf-bcfe-474c-95f7-140edb34eb00</subsheetid>
+    <display x="150" y="-75" />
+    <datatype>collection</datatype>
+    <private />
+    <alwaysinit />
+    <collectioninfo>
+      <field name="firstName" type="text" />
+      <field name="lastName" type="text" />
+      <field name="address" type="text" />
+      <field name="city" type="text" />
+      <field name="state" type="text" />
+      <field name="zip" type="number" />
+      <field name="phoneNumber" type="number" />
+      <field name="email" type="text" />
+    </collectioninfo>
+    <initialvalue>
+      <row>
+        <field name="firstName" type="text" value="" />
+        <field name="lastName" type="text" value="" />
+        <field name="address" type="text" value="" />
+        <field name="city" type="text" value="" />
+        <field name="state" type="text" value="" />
+        <field name="zip" type="number" value="" />
+        <field name="phoneNumber" type="number" value="" />
+        <field name="email" type="text" value="" />
+      </row>
+    </initialvalue>
   </stage>
 </process>
