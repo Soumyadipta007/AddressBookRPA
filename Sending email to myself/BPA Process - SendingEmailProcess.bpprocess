@@ -1,0 +1,25 @@
+﻿<process name="SendingEmailProcess" version="1.0" bpversion="6.9.0.26970" narrative="" byrefcollection="true" preferredid="47d49a26-a975-45e1-9dcd-e59ba8f66d85">
+  <view>
+    <camerax>0</camerax>
+    <cameray>0</cameray>
+    <zoom version="2">1.25</zoom>
+  </view>
+  <preconditions />
+  <endpoint narrative="" />
+  <stage stageid="5e2313cd-d42d-4d0d-a741-f5411519da0f" name="Start" type="Start">
+    <display x="15" y="-105" />
+    <onsuccess>4e9bd6eb-2c22-4acf-8e92-b6d8434b049a</onsuccess>
+  </stage>
+  <stage stageid="541f905b-e9a8-422e-8d42-5eee39a5c56e" name="End" type="End">
+    <display x="15" y="90" />
+  </stage>
+  <stage stageid="f8dae007-007e-4438-af60-2476b0288ab9" name="Stage1" type="ProcessInfo">
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="4e9bd6eb-2c22-4acf-8e92-b6d8434b049a" name="send email::send mail" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="15" y="-15" />
+    <onsuccess>541f905b-e9a8-422e-8d42-5eee39a5c56e</onsuccess>
+    <resource object="send email" action="send mail" />
+  </stage>
+</process>
