@@ -1,7 +1,7 @@
-﻿<process name="AddressBookProcess" version="1.0" bpversion="6.9.0.26970" narrative="" byrefcollection="true" preferredid="6cb7532b-9ef5-4fd6-9a75-ce978dfe6407">
+﻿<process name="AddressBookProcess" version="1.0" bpversion="6.9.0.26970" narrative="" byrefcollection="true" preferredid="6cb7532b-9ef5-4fd6-9a75-ce978dfe6407" published="true">
   <view>
     <camerax>0</camerax>
-    <cameray>-21</cameray>
+    <cameray>21</cameray>
     <zoom version="2">1.25</zoom>
   </view>
   <preconditions />
@@ -11,7 +11,7 @@
     <onsuccess>c261f447-75a7-4a96-a869-eb94c0004d84</onsuccess>
   </stage>
   <stage stageid="aa1175a3-2a0b-4a43-9fc8-94043fad8c12" name="End" type="End">
-    <display x="15" y="270" />
+    <display x="15" y="330" />
   </stage>
   <stage stageid="fb49e6ec-2592-4f62-9856-015a9686ceb9" name="Stage1" type="ProcessInfo">
     <display x="-195" y="-105" w="150" h="90" />
@@ -49,7 +49,13 @@
   <stage stageid="8330951e-c144-4ce2-9fc4-fc8f7e2701cf" name="AddressBook::Search by name" type="Action">
     <loginhibit onsuccess="true" />
     <display x="15" y="210" />
-    <onsuccess>aa1175a3-2a0b-4a43-9fc8-94043fad8c12</onsuccess>
+    <onsuccess>2bd88297-c1af-43ca-a1a8-c221cdf4f4f4</onsuccess>
     <resource object="AddressBook" action="Search by name" />
+  </stage>
+  <stage stageid="2bd88297-c1af-43ca-a1a8-c221cdf4f4f4" name="AddressBook::Send email" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="15" y="270" />
+    <onsuccess>aa1175a3-2a0b-4a43-9fc8-94043fad8c12</onsuccess>
+    <resource object="AddressBook" action="Send email" />
   </stage>
 </process>
